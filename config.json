@@ -1,0 +1,35 @@
+{
+  "game_type": "Apex Legends",
+  "event_types": ["kill", "assist", "revive", "victory"],
+"event_texts": [
+    "Headshot",
+    "Triple Kill",
+    "Final Blow",
+    "Team Wipe",
+    "Clutch Play"
+  ],
+  "overlays": [
+    {
+      "text": "kill",
+      "x1": 689.0,
+      "y1": 686.2,
+      "x2": 1256.42,
+      "y2": 880.14
+    },
+    {
+      "text": "revive",
+      "x1": 100,
+      "y1": 50,
+      "x2": 400,
+      "y2": 300
+    },
+    {
+      "text": "hi",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1000,
+      "y2": 50
+    }
+
+  ]
+}

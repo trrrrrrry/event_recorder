@@ -1,0 +1,50 @@
+[
+    {
+        "game_type": "Test",
+        "event_type": "kill",
+        "highlight_frame": 100,
+        "duration_frames": 30,
+        "highlight_time": 3.33,
+        "duration_seconds": 1.0,
+        "event_text": "",
+        "save_path": "D:\\reaudition_2509\\event_recorder\\saved",
+        "language": "zh_CN",
+        "comment": ""
+    },
+    {
+        "game_type": "T",
+        "event_type": "e",
+        "highlight_frame": 1,
+        "duration_frames": 1,
+        "highlight_time": 0.0,
+        "duration_seconds": 0.0,
+        "event_text": "",
+        "save_path": "D:\\reaudition_2509\\event_recorder\\saved",
+        "language": "zh_CN",
+        "comment": ""
+    },
+    {
+        "game_type": "Apex Legends",
+        "event_type": "kill",
+        "highlight_frame": 49,
+        "duration_frames": 0,
+        "event_text": "击杀",
+        "save_path": "D:\\reaudition_2509\\event_recorder\\saved",
+        "language": "zh_CN",
+        "comment": "0",
+        "highlight_time": 0.8166688043445558,
+        "duration_seconds": 0.0
+    },
+    {
+        "game_type": "Apex Legends",
+        "event_type": "kill",
+        "highlight_frame": 0,
+        "duration_frames": 0,
+        "event_text": "",
+        "save_path": "D:\\reaudition_2509\\event_recorder\\saved\\Apex-en_US-诸王峡谷-016",
+        "language": "zh_CN",
+        "comment": "0",
+        "highlight_time": 0,
+        "duration_seconds": 0.0
+    }
+]
