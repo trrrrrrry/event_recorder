@@ -1,19 +1,20 @@
 # Video Event Marker
 
-项目概述
-Event Recorder 是一个基于 Python 和 Tkinter 的视频事件标注工具，主要功能：
+## Project Overview
 
-- `加载视频`：支持常见视频格式（`MP4`/`MOV`/`AVI`）。
+Event Recorder is a video event annotation tool built with Python and Tkinter. Key features:
 
-- `加载/保存事件`：以 `JSON` 格式读写事件记录。
+- `Load Video`: Supports common video formats (`MP4`/`MOV`/`AVI`).
 
-- `加载配置`：从 `config.json` 中读取游戏类型、事件类型和可选文本。
+- `Load/Save Events`: Reads and writes event records in `JSON` format.
 
-- `添加事件`：提供 `“添加事件”`、`“开始标记”`、`“结束标记”` 三步，记录事件起止帧并填写元数据；`“结束标记”` 按钮仅在点击 `“开始标记”` 后可用。
+- `Load Config`: Loads game types, event types, and optional texts from `config.json`.
 
-- `可选文本`：在对话框中，用户可从预置 `event_texts` 列表中选择，也可手动输入自定义文本。
+- `Add Event`: Provides a three-step flow — `“Add Event”`, `“Start Marking”`, `“End Marking” `— to record the event’s start/end frames and fill in metadata; the `“End Marking”` button is enabled only after clicking `“Start Marking”`.
 
-- `导出格式`：标注完成后生成结构化的 `JSON` 文件，便于后续分析或训练模型。
+- `Optional Text`: In the dialog, users can select from the preset `event_texts` list or manually enter custom text.
+
+- `Export Format`: After annotation, generates a structured  `JSON` file for downstream analysis or model training.
 
 ---
 
@@ -22,20 +23,20 @@ Event Recorder 是一个基于 Python 和 Tkinter 的视频事件标注工具，
 ```bash
 event_recorder/
 ├── core/
-│   ├── video_core.py       # 视频加载与帧读取核心
-│   └── event_logic.py      # 事件列表管理：增删改查、保存
+│   ├── video_core.py       # Core for video loading and frame reading
+│   └── event_logic.py      # Event list management: create/read/update/delete and save
 ├── gui/
-│   ├── main_window.py      # 主界面：Tkinter 窗口、按钮、画面渲染、进度条
-│   └── event_dialog.py     # 事件对话框：填写/选择事件信息
+│   ├── main_window.py      # Main UI: Tkinter window, buttons, video preview rendering, progress bar
+│   └── event_dialog.py     # Event dialog: enter/select event details
 ├── saved/
-│   ├── config.json         # 示例配置文件（见下文）
-│   └── events.json         # 标注完成后导出的事件记录
-├── config.py               # 默认保存路径等全局配置
-└── README.md               # 本文件
+│   ├── config.json         # Example configuration file (see below)
+│   └── events.json         # Event records exported after annotation
+├── config.py               # Global settings (default save paths, etc.)
+└── README.md               # This file
 ```
 ---
-配置文件示例 (config.json)
-放在 event_recorder/saved/config.json，用于填充下拉项：
+Configuration file example (config.json)
+Put this in event_recorder/saved/config.json to populate the dropdown options:
 ```json
 {
   "game_types": [
@@ -82,16 +83,16 @@ event_recorder/
 
 }
 ```
-- game_types：游戏种类，下拉选择固定值。
+- `game_types`: Game types; select from fixed values in a dropdown.
 
-- event_types：事件类型，下拉选择，包含 “Others” 以手动输入。
+- `event_types`: Event types; dropdown includes “Others” for manual input.
 
-- event_texts：可选显示文本，下拉/手输两用。
+- `event_texts`: Optional display text; dual-mode (dropdown or manual input).
 
-- overlays: 要全程显示的标注框及文本
+- `overlays`: Annotation boxes and text to display throughout.
 
 ---
-## 导出文件格式与示例 (events.json)
+## export file example (events.json):
 ```json
 [
   {
@@ -122,48 +123,44 @@ event_recorder/
 ```
 ---
 
-## 字段说明：
+## Field Description
 
-- `game_type`：游戏种类
+- `game_type`: Game category.
+- `event_type`: Event type (or `"Others"` + custom).
+- `highlight_frame`: Start frame index.
+- `highlight_time`: Time at the start frame (float, in seconds).
+- `duration_frames`: Event duration in frames.
 
-- `event_type`：事件类型（或 “Others”+自定义）
-
-- `highlight_frame`：开始帧编号
-
-- `highlight_time`：对应开始帧的秒数（浮点，单位 s）
-
-- `duration_frames`：事件持续帧数
-
-- `duration_seconds`：对应持续时长（s）
-
-- `event_text`：显示/描述文本
-
-- `save_path`：保存该事件截图或数据的文件夹路径
-
-- `language`：语言代码（zh_CN/en_US/all）
-
-- `comment`：备注，可选。
+- `duration_seconds`: Corresponding duration (in seconds).
+- `event_text`: Display/description text.
+- `save_path`: Folder path to save screenshots or data for this event.
+- `language`: Language code (`zh_CN` / `en_US` / `all`).
+- `comment`: Remarks; optional.
 
 ---
-## 快速开始
+## Quick Start
 
-1. 安装依赖：
+1. Install dependencies:
 
 ```bash
 pip install opencv-python pillow scikit-image
 ```
-2. 运行程序：
+
+2. Run the program:
+
 ```bash
 python event_recorder/gui/main_window.py
 ```
-3. 点击`加载配置`，选择示例 `saved/config.json`
 
-4. 点击`加载视频`，选择需要标注的视频
+3. Click `Load Config` and select the sample `saved/config.json`.
 
-5. 点击`添加事件`, 直接记录当前帧作为高光时刻，并在弹窗中填写/选择其他信息记录特定事件
+4. Click `Load Video` and choose the video to annotate.
 
-6. 也可依次点击`开始标记` → `结束标记`，记录当前帧作为高光时刻，和点击间隔为持续时间，并在弹窗中填写/选择其他信息记录特定事件
+5. Click `Add Event` to record the current frame as the highlight moment, then fill/select additional details in the popup to record the specific event.
 
-7. 点击`保存事件`导出 `saved/events.json`
+6. Alternatively, click `Start Marking` → `End Marking` in sequence to record the current frame as the highlight moment and use the interval between clicks as the duration; then fill/select additional details in the popup to record the specific event.
+
+7. Click `Save Events` to export `saved/events.json`.
+
 
 
